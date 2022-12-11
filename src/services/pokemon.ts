@@ -7,8 +7,6 @@ export const getPokemonByName = async (name: string) => {
 
         // TODO: Handle error or non existant pokemon
         if (status == 200){
-
-
             return<Pokemon>{name: data.name, height: data.height, weight: data.weight} ;
         } else {
             // Error getting
@@ -26,28 +24,18 @@ export const getPokemonByName = async (name: string) => {
     }
 }
 
-export const getPokemon = async () => {
-    try {
-        const response = await axios.get<Pokemon[]>(`https://pokeapi.co/api/v2/pokemon`);
+interface PokemonListResponse {
+    results: Pokemon[],
+}
 
-        console.log(response);
+export const getPokemon = async (names: string[]) => {
+    const results = await Promise.allSettled(names.map(name => {
+        return getPokemonByName(name);
+    }))
 
-        // TODO: Handle error or non existant pokemon
-        if (response.status == 200){
-            console.log(response.data.length)
-            return response.data.map<Pokemon>(pokemon => ({name: pokemon.name, height: pokemon.height, weight: pokemon.weight}))
-        } else {
-            // Error getting
-            return null
-        }
-    } catch (error) {
-        // TODO: Generalize Axios errors
-        if (axios.isAxiosError(error)) {
-            console.log('error message: ', error.message);
-            return null
-        } else {
-            console.log('unexpected error: ', error);
-            return null
-        }
-    }
+    // Assume all succeeded
+    const fulfilled = results.filter(result => result.status === 'fulfilled') as PromiseFulfilledResult<Pokemon>[]
+    const pokemonList = fulfilled.map((response)=>response.value)
+
+    return pokemonList
 }
