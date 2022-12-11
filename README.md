@@ -23,6 +23,9 @@ Compiled Typescript API into the `dist` folder.
 ### Development without watcher (or compile for production)
 1. Run `npm run build`, this will output the compiled TypeScript files into the `dist` folder.
 
+### Run jest tests
+1. Run `npm run test`, in the current iteration, its expected that 1 out of 3 test fail (Mode is not tested/completed).
+
 
 ## Notes
 - Most recent version of `axios` has [breaking errors](https://github.com/axios/axios/issues/5346) in latest version.  Had to debug and hardcode to version 1.2.1.
