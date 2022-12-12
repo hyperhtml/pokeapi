@@ -3,9 +3,10 @@ import { Pokemon } from "../models/pokemon"
 
 export const getPokemonByName = async (name: string) => {
     try {
+        // TODO: Add caching to api call.
         const {data, status} = await axios.get<Pokemon>(`https://pokeapi.co/api/v2/pokemon/${name}`);
 
-        // TODO: Handle error or non existant pokemon
+        // TODO: Pass generalized errors to callee
         if (status == 200){
             return<Pokemon>{name: data.name, height: data.height, weight: data.weight} ;
         } else {
@@ -33,7 +34,7 @@ export const getPokemon = async (names: string[]) => {
         return getPokemonByName(name);
     }))
 
-    // Assume all succeeded
+    // Assuming all succeeded
     const fulfilled = results.filter(result => result.status === 'fulfilled') as PromiseFulfilledResult<Pokemon>[]
     const pokemonList = fulfilled.map((response)=>response.value)
 

@@ -16,8 +16,9 @@ exports.getPokemon = exports.getPokemonByName = void 0;
 const axios_1 = __importDefault(require("axios"));
 const getPokemonByName = (name) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        // TODO: Add caching to api call.
         const { data, status } = yield axios_1.default.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
-        // TODO: Handle error or non existant pokemon
+        // TODO: Pass generalized errors to callee
         if (status == 200) {
             return { name: data.name, height: data.height, weight: data.weight };
         }
@@ -43,7 +44,7 @@ const getPokemon = (names) => __awaiter(void 0, void 0, void 0, function* () {
     const results = yield Promise.allSettled(names.map(name => {
         return (0, exports.getPokemonByName)(name);
     }));
-    // Assume all succeeded
+    // Assuming all succeeded
     const fulfilled = results.filter(result => result.status === 'fulfilled');
     const pokemonList = fulfilled.map((response) => response.value);
     return pokemonList;

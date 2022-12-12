@@ -1,3 +1,4 @@
+// TODO: Provide a MeanMedianMode function for one numberList instead of having to be called three times.
 export const meanFromList = (numbers: number[]) => {
     // Mean - Total/length
     let sum = 0;
@@ -16,12 +17,12 @@ export const medianFromList = (numbers: number[]) => {
     if(numbers.length % 2 === 0){
         const midIndex = numbers.length / 2;
 
-        // Even - divide middle numbers
+        // If Even - divide middle numbers
         median = (numbers[numbers.length / 2 - 1] + numbers[numbers.length / 2]) / 2;
         median = (numbers[numbers.length / 2 - 1] + numbers[numbers.length / 2]) / 2;
 
     } else {
-        // Odd - Return middle index, divide by two round down.
+        // If Odd - Return middle index, divide by two round down.
         median = numbers[Math.floor(numbers.length / 2)];
     }
 
@@ -30,6 +31,7 @@ export const medianFromList = (numbers: number[]) => {
 
 export const modeFromList = (numbers: number[]) => {
     // TODO: Return number that has most frequency, if all the same, return null
+        // determine frequency for each number in the numberList
 
     return numbers[1];
 }
