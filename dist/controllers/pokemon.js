@@ -16,7 +16,12 @@ const getOnePokemon = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     // TODO: Validate Request
     const pokemonName = req.params.name;
     const pokemon = yield (0, pokemon_1.getPokemonByName)(pokemonName);
-    res.send(pokemon);
+    if (pokemon !== null) {
+        res.send(pokemon);
+    }
+    else {
+        res.sendStatus(404);
+    }
 });
 exports.getOnePokemon = getOnePokemon;
 const getPokemonList = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

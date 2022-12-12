@@ -1,0 +1,263 @@
+{
+	"info": {
+		"_postman_id": "c76beaf2-3e61-414b-9918-fcc9f44c7ac7",
+		"name": "PokeAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2524454"
+	},
+	"item": [
+		{
+			"name": "Root",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{hostname}}:{{port}}/",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Single Pokemon (pokemon/:id)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{hostname}}:{{port}}/pokemon/pikachu",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"pokemon",
+						"pikachu"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Pikachu",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostname}}:{{port}}/pokemon/pikachu",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"pokemon",
+								"pikachu"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"29-hAWgJVsYi/ZCOCuNT4khnxj5324\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 12 Dec 2022 03:08:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"name\": \"pikachu\",\n    \"height\": 4,\n    \"weight\": 60\n}"
+				}
+			]
+		},
+		{
+			"name": "List Pokemon (pokemon)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{hostname}}:{{port}}/pokemon?names=pikachu,charizard",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"pokemon"
+					],
+					"query": [
+						{
+							"key": "names",
+							"value": "pikachu,charizard",
+							"description": "Actual pokemon"
+						},
+						{
+							"key": "names",
+							"value": "bulbisaur",
+							"description": "Invalid pokemon",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Existing pokemon",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostname}}:{{port}}/pokemon?names=bulbisaur",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"pokemon"
+							],
+							"query": [
+								{
+									"key": "names",
+									"value": "pikachu,charizard",
+									"description": "Actual pokemon",
+									"disabled": true
+								},
+								{
+									"key": "names",
+									"value": "bulbisaur",
+									"description": "Invalid pokemon"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "208"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d0-9fGKKUT4FoeuOGyH2fxKpbLjK34\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 12 Dec 2022 03:06:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"pokemon\": [\n        {\n            \"name\": \"pikachu\",\n            \"height\": 4,\n            \"weight\": 60\n        },\n        {\n            \"name\": \"charizard\",\n            \"height\": 17,\n            \"weight\": 905\n        }\n    ],\n    \"heightStats\": {\n        \"mean\": 10.5,\n        \"median\": 10.5,\n        \"mode\": 17\n    },\n    \"weightStats\": {\n        \"mean\": 482.5,\n        \"median\": 482.5,\n        \"mode\": 905\n    }\n}"
+				},
+				{
+					"name": "Non existant pokemon",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostname}}:{{port}}/pokemon?names=bulbisaur",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"pokemon"
+							],
+							"query": [
+								{
+									"key": "names",
+									"value": "pikachu,charizard",
+									"description": "Actual pokemon",
+									"disabled": true
+								},
+								{
+									"key": "names",
+									"value": "bulbisaur",
+									"description": "Invalid pokemon"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "98"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"62-4Np1W0XVm9jcZvie9+/y8haztQM\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 12 Dec 2022 03:07:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"pokemon\": [],\n    \"heightStats\": {\n        \"mean\": null,\n        \"median\": null\n    },\n    \"weightStats\": {\n        \"mean\": null,\n        \"median\": null\n    }\n}"
+				}
+			]
+		}
+	]
+}

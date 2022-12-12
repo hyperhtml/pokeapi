@@ -15,28 +15,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getPokemon = exports.getPokemonByName = void 0;
 const axios_1 = __importDefault(require("axios"));
 const getPokemonByName = (name) => __awaiter(void 0, void 0, void 0, function* () {
+    let pokemon = null;
     try {
         // TODO: Add caching to api call.
         const { data, status } = yield axios_1.default.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
         // TODO: Pass generalized errors to callee
         if (status == 200) {
-            return { name: data.name, height: data.height, weight: data.weight };
-        }
-        else {
-            // Error getting
-            return null;
+            pokemon = { name: data.name, height: data.height, weight: data.weight };
         }
     }
     catch (error) {
         // TODO: Generalize Axios errors
         if (axios_1.default.isAxiosError(error)) {
             console.log('error message: ', error.message);
-            return null;
         }
         else {
             console.log('unexpected error: ', error);
-            return null;
         }
+    }
+    finally {
+        return pokemon;
     }
 });
 exports.getPokemonByName = getPokemonByName;
@@ -45,7 +43,7 @@ const getPokemon = (names) => __awaiter(void 0, void 0, void 0, function* () {
         return (0, exports.getPokemonByName)(name);
     }));
     // Assuming all succeeded
-    const fulfilled = results.filter(result => result.status === 'fulfilled');
+    const fulfilled = results.filter(result => result.status === 'fulfilled' && result.value != null);
     const pokemonList = fulfilled.map((response) => response.value);
     return pokemonList;
 });

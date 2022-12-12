@@ -29,7 +29,7 @@ const medianFromList = (numbers) => {
 };
 exports.medianFromList = medianFromList;
 const modeFromList = (numbers) => {
-    // TODO: Return number that has most frequency, if all the same, return null
+    // TODO: Return number(s) that has most frequency, if all the same, return null
     // determine frequency for each number in the numberList
     return numbers[1];
 };

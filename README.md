@@ -27,5 +27,8 @@ Compiled Typescript API into the `dist` folder.
 1. Run `npm run test`, in the current iteration, its expected that 1 out of 3 test fail (Mode is not tested/completed).
 
 
+## Documentation
+- Included a `PokeAPI.postman_collection.json`, which can be imported to Postman for reference.
+
 ## Notes
-- Most recent version of `axios` has [breaking errors](https://github.com/axios/axios/issues/5346) in latest version.  Had to debug and hardcode to version lock to 1.2.1.
+- Most recent version of `axios` has [breaking errors](https://github.com/axios/axios/issues/5346) in latest version.  Had to debug and hardcode to version pin to 1.2.1.

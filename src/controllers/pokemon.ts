@@ -6,10 +6,13 @@ import { getPokemon, getPokemonByName } from '../services/pokemon';
 export const getOnePokemon = async (req: Request<{name: string}>, res: Response) => {
     // TODO: Validate Request
     const pokemonName: string = req.params.name;
+    const pokemon = await getPokemonByName(pokemonName);
 
-    const pokemon = await getPokemonByName(pokemonName)
-
-    res.send(pokemon);
+    if(pokemon !== null){
+        res.send(pokemon);
+    } else {
+        res.sendStatus(404);
+    }
 }
 
 interface RequestQuery {
@@ -31,7 +34,7 @@ export const getPokemonList = async (req: Request<{},{},{},{names: string;}>, re
     const namesArray = req.query.names.split(',');
 
     const pokemonList = await getPokemon(namesArray);
-
+    
     const heights = pokemonList.map(pokemon => pokemon.height);
     const weights = pokemonList.map(pokemon => pokemon.weight);
 
