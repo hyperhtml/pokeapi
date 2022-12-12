@@ -11,6 +11,7 @@ app.get('/', (req, res) => {
     res.send({ success: "true" });
 });
 app.use('/', routes_1.default);
+// TODO: Add swagger API documentation
 app.listen(PORT, () => {
     console.log(`SERVER IS RUNNING AT http://localhost:${PORT}`);
 });

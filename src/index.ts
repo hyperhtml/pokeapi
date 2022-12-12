@@ -12,6 +12,8 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use('/', rootRouter)
 
+// TODO: Add swagger API documentation
+
 app.listen(PORT, () => {
     console.log(`SERVER IS RUNNING AT http://localhost:${PORT}`);
 })
